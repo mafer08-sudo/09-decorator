@@ -37,4 +37,7 @@ class DecoradoresTest {
     void cuponSobrePedidoPequeno() {
         assertPesos(90_000, new DescuentoCupon(base(100_000)).costo());
     }
+
+    @Test
+    void cuponDebeRespetarTopeMaximo() {CostoPedido pedido = new DescuentoCupon(base(300_000)); assertPesos(280_000, pedido.costo());}
 }
