@@ -1,6 +1,7 @@
 package co.sena.mercasena.decorator;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 
 public class SeguroEnvio extends DecoradorCosto {
 
@@ -10,8 +11,13 @@ public class SeguroEnvio extends DecoradorCosto {
 
     @Override
     public BigDecimal costo() {
+
         BigDecimal base = envuelto.costo();
-        BigDecimal seguro = BigDecimal.valueOf(base.doubleValue() * 0.02);
+
+        BigDecimal seguro = base
+                .multiply(new BigDecimal("0.02"))
+                .setScale(0, RoundingMode.HALF_UP);
+
         return base.add(seguro);
     }
 
