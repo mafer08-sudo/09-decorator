@@ -13,8 +13,18 @@ public class DescuentoCupon extends DecoradorCosto {
 
     @Override
     public BigDecimal costo() {
+
         BigDecimal base = envuelto.costo();
-        BigDecimal descuento = base.multiply(PORCENTAJE).setScale(0, RoundingMode.HALF_UP);
+
+        BigDecimal descuento = base.multiply(PORCENTAJE)
+                .setScale(0, RoundingMode.HALF_UP);
+
+        BigDecimal tope = BigDecimal.valueOf(20_000);
+
+        if (descuento.compareTo(tope) > 0) {
+            descuento = tope;
+        }
+
         return base.subtract(descuento);
     }
 

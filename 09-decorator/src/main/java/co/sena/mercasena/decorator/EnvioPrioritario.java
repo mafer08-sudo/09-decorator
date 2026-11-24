@@ -9,9 +9,7 @@ public class EnvioPrioritario extends DecoradorCosto {
     }
 
     @Override
-    public BigDecimal costo() {
-        return BigDecimal.valueOf(8_000);
-    }
+    public BigDecimal costo() { return envuelto.costo().add(BigDecimal.valueOf(8_000));}
 
     @Override
     public String descripcion() {
